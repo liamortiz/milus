@@ -4,10 +4,10 @@ const Navigation = () => {
     return(
         <nav>
             <ul>
-                <li><a href ="">My Board</a></li>
-                <li><a href ="">Activities</a></li>
-                <li><a href ="">Contacts</a></li>
-                <li><a href ="">Metrics</a></li>
+                <li><i className="icon board-icon"></i><a href ="/" className="active-link">My Board</a></li>
+                <li><i className="icon bell-icon"></i><a href ="/">Activities</a></li>
+                <li><i className="icon contact-icon"></i><a href ="/">Contacts</a></li>
+                <li><i className="icon metrics-icon"></i><a href ="/">Metrics</a></li>
             </ul>
         </nav>
     )
