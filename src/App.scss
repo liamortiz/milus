@@ -1,5 +1,14 @@
 $nav-color: #a8a8a8;
 $main-color: #BA3B46;
+@font-face {
+  font-family: 'Rubik';
+  src: url('./assets/fonts/Rubik.ttf');
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/fonts/Roboto-Regular.ttf');
+}
+
 nav {
   height: 4rem;
   border-bottom: 1px solid $nav-color;
@@ -56,4 +65,45 @@ nav {
 
 #board-container {
   height: 50rem;
+  width: 100%;
+  padding: 1em;
+  margin: 1em auto;
+  white-space: nowrap;
+}
+
+#job-card {
+  margin: 0 .2em;
+  border: 1px solid $nav-color;
+  text-align: center;
+  width: 20rem;
+  height: 50rem;
+  position: relative;
+  display: inline-block;
+  h2 {
+    font-weight: 500;
+    font-family: 'Rubik';
+    color: $main-color;
+    margin-bottom: .2em;
+  }
+  span {
+    color: rgb(65, 65, 65);
+  }
+  .add-job-btn {
+    width: 2rem;
+    height: 2rem;
+    left: 88%;
+    top: 1%;
+    position: absolute;
+    background-image: url('./assets/icons/add.png');
+    background-position: center;
+    background-size: contain;
+    border: none;
+    background-color: white;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
