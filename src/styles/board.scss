@@ -12,4 +12,78 @@
     margin: 0 .5em;
     border: 1px solid lighten($color: $main-color, $amount: 30%);
     display: inline-block;
+    position: relative;
+}
+
+.card-heading {
+    text-align: center;
+    h2 {
+        font-family: 'Rubik';
+        color: $main-color;
+        font-weight: lighter;
+    }
+    p {
+        margin-top: -1em;
+        color: rgb(75, 75, 75);
+    }
+}
+
+.add-job-icon {
+    border: none;
+    background: white;
+    position: absolute;
+    top: 20px;
+    left: 87%;
+    background-image: url('../assets/icons/add-file.png');
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.job-post {
+    width: 90%;
+    height: 5rem;
+    margin: .2em auto;
+    background: #3F69FF;
+    border-radius: 5px;
+    text-align: left;
+    position: relative;
+    h3 {
+        color:white;
+        padding: .5em 1em;
+        font-size: 100%;
+        font-family: 'Roboto';
+    }
+    p {
+        color: white;
+        font-weight: bold;
+        padding-left: 1em;
+        margin-top: 1em;
+        font-family: 'Roboto';
+        font-size: 90%;
+    }
+    button {
+        width: 1.2em;
+        height: 1.2em;
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        top: 70%;
+        left: 90%;
+        &:hover {
+            cursor: pointer;
+            opacity: 0.9;;
+        }
+    }
+    .trash-icon {
+        background-image: url('../assets/icons/trash-can.png');
+    }
+    .edit-icon {
+        background-image: url('../assets/icons/edit.png');
+        left: 82%;
+        top: 72%;
+    }
 }

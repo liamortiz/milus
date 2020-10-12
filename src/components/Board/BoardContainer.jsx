@@ -4,10 +4,10 @@ import Card from './Card';
 const BoardContainer = () => {
     return (
         <div id="board-container">
-            <Card/>
-            <Card/>
-            <div className="create-card">
+            <Card heading="Applied"/>
+            <Card heading="Phone Interview"/>
 
+            <div className="create-card">
             </div>
         </div>
     )
