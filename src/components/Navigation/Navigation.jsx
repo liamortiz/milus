@@ -3,11 +3,11 @@ import React from 'react';
 const Navigation = () => {
     return(
         <nav>
+            <a href="/" className="logo"><h1>Milus</h1></a>
             <ul>
-                <li><i className="icon board-icon"></i><a href ="/" className="active-link">My Board</a></li>
-                <li><i className="icon bell-icon"></i><a href ="/">Activities</a></li>
-                <li><i className="icon contact-icon"></i><a href ="/">Contacts</a></li>
-                <li><i className="icon metrics-icon"></i><a href ="/">Metrics</a></li>
+                <li><a href="">Board</a></li>
+                <li><a href="">Metrics</a></li>
+                <li><a href="">Profile</a></li>
             </ul>
         </nav>
     )

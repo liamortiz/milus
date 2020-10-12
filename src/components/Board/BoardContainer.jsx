@@ -1,10 +1,14 @@
 import React from 'react';
-import JobCard from './JobCard';
+import Card from './Card';
 
 const BoardContainer = () => {
     return (
         <div id="board-container">
-            <JobCard title='Applied' jobs={0}/>
+            <Card/>
+            <Card/>
+            <div className="create-card">
+
+            </div>
         </div>
     )
 }

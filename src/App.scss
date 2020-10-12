@@ -1,21 +1,18 @@
-$nav-color: #a8a8a8;
-$main-color: #BA3B46;
-@font-face {
-  font-family: 'Rubik';
-  src: url('./assets/fonts/Rubik.ttf');
-}
-@font-face {
-  font-family: 'Roboto';
-  src: url('./assets/fonts/Roboto-Regular.ttf');
-}
-
+@import './styles/board.scss';
 nav {
-  height: 4rem;
+  height: 3rem;
   border-bottom: 1px solid $nav-color;
   display: flex;
   justify-content: center;
   flex-direction: row;
   align-items: center;
+  background-color: $main-color;
+  color: white;
+  .logo {
+    color: white;
+    text-decoration: none;
+    font-family: 'Roboto';
+  }
   ul li {
     list-style-type: none;
     float: left;
@@ -23,87 +20,18 @@ nav {
     margin: 0 1em;
     a {
       text-decoration: none;
-      color: black;
+      color: white;
       margin: 0 2em;
       padding: .5em;
       transition: all .2s;
+      font-family: 'Rubik';
       &:hover {
-        color: white;
-        background-color: $main-color;
+        color: darken($color: $main-color, $amount: 30%);
       }
     }
   }
 }
 
 .active-link {
-  background: $main-color;
-  color: white;
-}
-
-.icon {
-  position: absolute;
-  left: -.4em;
-  top: -.3em;
-  width: 2rem;
-  height: 2rem;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.board-icon {
-  background-image: url('./assets/icons/presentation.png');
-}
-.bell-icon {
-  background-image: url('./assets/icons/bell.png');
-}
-.contact-icon {
-  background-image: url('./assets/icons/phone-book.png');
-}
-.metrics-icon {
-  background-image: url('./assets/icons/metrics.png');
-}
-
-#board-container {
-  height: 50rem;
-  width: 100%;
-  padding: 1em;
-  margin: 1em auto;
-  white-space: nowrap;
-}
-
-#job-card {
-  margin: 0 .2em;
-  border: 1px solid $nav-color;
-  text-align: center;
-  width: 20rem;
-  height: 50rem;
-  position: relative;
-  display: inline-block;
-  h2 {
-    font-weight: 500;
-    font-family: 'Rubik';
-    color: $main-color;
-    margin-bottom: .2em;
-  }
-  span {
-    color: rgb(65, 65, 65);
-  }
-  .add-job-btn {
-    width: 2rem;
-    height: 2rem;
-    left: 88%;
-    top: 1%;
-    position: absolute;
-    background-image: url('./assets/icons/add.png');
-    background-position: center;
-    background-size: contain;
-    border: none;
-    background-color: white;
-    &:focus {
-      outline: none;
-    }
-    &:hover {
-      cursor: pointer;
-    }
-  }
+  color: darken($color: $main-color, $amount: 30%);
 }

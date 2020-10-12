@@ -7,8 +7,8 @@ import BoardContainer from './components/Board/BoardContainer';
 function App() {
   return (
     <div className="App">
-      <Navigation />
-      <BoardContainer />
+      <Navigation/>
+      <BoardContainer/>
     </div>
   );
 }
