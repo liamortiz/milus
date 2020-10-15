@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import JobPost from './JobPost';
 
-const Card = ({ heading }) => {
+const Card = ({ heading, subheading }) => {
 
     const [numOfJobs, setNumOfJobs] = useState(0);
     const [jobPosts, setJobPosts] = useState([]);
@@ -15,6 +15,7 @@ const Card = ({ heading }) => {
             <div className="card-heading">
                 <h2>{heading}</h2>
                 <button onClick={addJob} className="icon add-job-icon"></button>
+                <p className="subheading">{subheading}</p>
                 <p>{numOfJobs} Jobs</p>
             </div>
             <div className="job-posts-container">
