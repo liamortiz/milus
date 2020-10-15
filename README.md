@@ -11,5 +11,5 @@ Milus is meant to be a smart job application tracker. It will be able to keep tr
 - HTML
 
 ### Backend Tools
-- PostgreSQL
-- Ruby on Rails
+- MongoDB
+- Python
