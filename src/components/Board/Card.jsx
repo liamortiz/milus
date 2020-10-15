@@ -8,8 +8,8 @@ const Card = ({ heading }) => {
 
     const addJob = () => {
         setNumOfJobs(numOfJobs+1);
+        setJobPosts([...jobPosts, <JobPost title="Jr Software Engineer" company="Facebook"/>]);
     }
-
     return (
         <div className="card">
             <div className="card-heading">
@@ -18,7 +18,7 @@ const Card = ({ heading }) => {
                 <p>{numOfJobs} Jobs</p>
             </div>
             <div className="job-posts-container">
-                <JobPost title="Jr Web Developer" company="Facebook"/>
+                {jobPosts}
             </div>
         </div>
     )

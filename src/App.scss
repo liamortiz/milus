@@ -26,7 +26,7 @@ nav {
       transition: all .2s;
       font-family: 'Rubik';
       &:hover {
-        color: darken($color: $main-color, $amount: 30%);
+        color: darken($color: $main-color, $amount: 20%);
       }
     }
   }
