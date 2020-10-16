@@ -6,13 +6,13 @@ const Card = (props) => {
     const [jobPosts, setJobPosts] = useState([]);
 
     const openJobForm = () => {
-        props.openJobForm();
+        props.openJobForm(null, {addJobPost});
     }
 
-    const addJobPost = () => {
+    const addJobPost = (job) => {
         setJobPosts(
             produce(jobPosts, nextState => {
-                nextState.push({title, company, id: jobPosts.length})
+                nextState.push(job)
         }));
     }
 

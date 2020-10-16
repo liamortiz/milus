@@ -115,7 +115,7 @@
 .create-card {
     width: 8rem;
     height: 40rem;
-    margin: 0 .5em;
+    margin-right: 0.5em;
     border: 1px solid $nav-color;
     float: left;
     .add-card-icon {
@@ -188,8 +188,4 @@
 
 .hidden {
     display: none;
-}
-
-.show {
-    display: block;
 }
