@@ -9,13 +9,12 @@
 .card {
     width: 20rem;
     height: 40rem;
-    margin: 0 .5em;
+    margin: 0 .05em;
     border: 1px solid lighten($color: $nav-color, $amount: 10%);
-    box-shadow: 1px 5px 5px 1px rgb(192, 192, 192);
     display: inline-block;
     position: relative;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     &::-webkit-scrollbar {
         width: .5em;
         background: rgb(224, 224, 224);
@@ -43,6 +42,7 @@
         font-family: 'Rubik';
         color: $main-color;
         font-weight: lighter;
+        font-size: 120%;
     }
     p {
         margin-top: -1em;
@@ -70,10 +70,11 @@
     width: 90%;
     height: 5rem;
     margin: .2em auto;
-    background: #3F69FF;
+    background: #3EB1F6;
     text-align: left;
     position: relative;
     border: 1px solid white;
+    border-radius: 5px;
     h3 {
         color:white;
         padding: .1em 1em;
