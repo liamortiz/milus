@@ -6,10 +6,14 @@ Milus is meant to be a smart job application tracker. It will be able to keep tr
 </p>
 
 ### Frontend Tools
-- JavaScript | React
+- JavaScript | React Hooks
 - SASS
 - HTML
 
 ### Backend Tools
 - MongoDB
 - Python
+
+### Packages
+- Immer, handles data mutations
+- DraggableJs, handles dragging and dropping job cards
