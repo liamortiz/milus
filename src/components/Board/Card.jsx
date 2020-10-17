@@ -21,7 +21,6 @@ const Card = (props) => {
         const newState = jobPosts.slice(0, index).concat(jobPosts.slice(index+1));
         setJobPosts(newState);
     }
-
     return (
         <div className="card">
             <div className="card-heading">
@@ -38,7 +37,7 @@ const Card = (props) => {
                         <p>@{job.company}</p>
 
                         <button onClick={() => removeJobPost(job.id)} className="icon trash-icon"></button>
-                        <button className="icon edit-icon"></button>
+                        <button onClick={() => props.editJobPost(job)} className="icon edit-icon"></button>
                     </div>
                     )
                 }
