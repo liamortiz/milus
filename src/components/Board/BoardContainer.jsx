@@ -32,6 +32,7 @@ const BoardContainer = () => {
                 <JobPostForm handleSubmit={submitJobPost} toggleForm={toggleForm}/>
             </div>
         </div>
+        
     )
 }
 export default BoardContainer;

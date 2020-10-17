@@ -17,11 +17,9 @@ const Card = (props) => {
     }
 
     const removeJobPost = (id) => {
-        setJobPosts(
-            produce(jobPosts, nextState => {
-                const index = nextState.findIndex(job => job.id === id);
-                // Remove the job post here
-            }));
+        const index = jobPosts.findIndex(job => job.id === id);
+        const newState = jobPosts.slice(0, index).concat(jobPosts.slice(index+1));
+        setJobPosts(newState);
     }
 
     return (
