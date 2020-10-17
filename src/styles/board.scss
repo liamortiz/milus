@@ -1,26 +1,40 @@
 @import './global.scss';
 
 #board-container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
     width: 100%;
-    padding: 1em;
-    box-sizing: border-box;
+    height: auto;
+    overflow: hidden;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    &::-webkit-scrollbar {
+        height: .5em;
+        background: rgb(224, 224, 224);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $main-color;
+        
+    }
 }
 
 .card {
+    flex: 1;
     width: 17rem;
-    height: 40rem;
+    height: 100%;
+    min-width: 17rem;
     margin: 0 .05em;
     border: 1px solid lighten($color: $nav-color, $amount: 10%);
-    display: inline-block;
     position: relative;
-    overflow: hidden;
     overflow-y: auto;
+    
     &::-webkit-scrollbar {
         width: .5em;
         background: rgb(224, 224, 224);
     }
     &::-webkit-scrollbar-thumb {
-        background-color: darkgrey;
+        background-color: $main-color;
         
     }
 
@@ -68,7 +82,7 @@
 
 .job-post {
     width: 90%;
-    height: 5rem;
+    height: 6rem;
     margin: .2em auto;
     background: #3EB1F6;
     text-align: left;
@@ -113,11 +127,9 @@
 }
 
 .create-card {
-    width: 8rem;
-    height: 40rem;
+    min-width: 8rem;
     margin-right: 0.5em;
     border: 1px solid $nav-color;
-    float: left;
     .add-card-icon {
         width: 64px;
         height: 64px;

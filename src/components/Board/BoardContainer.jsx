@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Card from './Card';
 import produce from 'immer';
 
@@ -13,6 +13,15 @@ const defaultJobCards = [
 const BoardContainer = () => {
 
     const [jobCards, setJobCards] = useState(defaultJobCards);
+    const boardContainer = useRef(null);
+
+    const adjustContainerHeight = () => {
+        boardContainer.current.style.height = `${window.innerHeight}px`;
+    }
+    useEffect(() => {
+        adjustContainerHeight();
+    }, [])
+    window.onresize = adjustContainerHeight;
 
     const removeJobCard = () => {
 
@@ -22,13 +31,11 @@ const BoardContainer = () => {
     }
 
     return (
-        <div id="board-container">
-            {jobCards.map(({name, jobs}) => <Card key={name} name={name} jobs={jobs} removeJobCard={removeJobCard}/>)}
-
+        <div id="board-container" ref={boardContainer}>
             <div className="create-card">
                 <button className="icon add-card-icon"></button>
             </div>
-
+            {jobCards.map(({name, jobs}) => <Card key={name} name={name} jobs={jobs} removeJobCard={removeJobCard}/>)}
         </div>
     )
 }

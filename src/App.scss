@@ -1,4 +1,7 @@
 @import './styles/board.scss';
+.App {
+  overflow: hidden;
+}
 nav {
   height: 3rem;
   border-bottom: 1px solid $nav-color;
