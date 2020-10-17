@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import emoji from 'node-emoji';
 
 const NewPostForm = (props) => {
 
@@ -23,7 +24,7 @@ const NewPostForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (company && title) {
-            props.addJobPost({company, title, id: uuidv4(), description});
+            props.addJobPost({company, title: `${title} ${emoji.random().emoji}`, id: uuidv4(), description});
         }
         updateFormValues({company: "", title: "", description: ""})
     }

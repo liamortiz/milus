@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import emoji from 'node-emoji';
 
 const EditForm = (props) => {
 
@@ -22,7 +23,7 @@ const EditForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (company && title) {
-            props.handleEditSubmit({company, title, description});
+            props.handleEditSubmit({company, title: emoji.emojify(title), description});
         }
         updateFormValues({company: "", title: "", description: ""})
     }

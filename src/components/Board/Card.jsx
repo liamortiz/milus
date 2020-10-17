@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import produce from 'immer';
 import NewPostForm from './NewPostForm';
 import EditForm from './EditForm';
+import { Sortable } from '@shopify/draggable';
+import emoji from 'node-emoji';
 
 const Card = ({ name, jobs }) => {
 
     const [jobPosts, setJobPosts] = useState(jobs);
     const [showForm, setShowForm] = useState(false);
     const [editting, setEditting] = useState(false);
-
     const [currentEditJob, setCurrentEditJob] = useState(null);
+
+    const cardContainer = useRef(null);
+    
+    useEffect(() => {
+        const draggable = new Sortable(cardContainer.current, {
+            draggable: '.broken'
+        })
+    }, [])
+
+    
 
     const addJobPost = (job) => {
         setJobPosts(
@@ -45,9 +56,13 @@ const Card = ({ name, jobs }) => {
         discardForm();
     }
 
+    const fixEmoji = () => {
+        return emoji.emojify(":coffee:");
+    }
+
     return (
         <>
-        <div className="card">
+        <div ref={cardContainer} className="card">
             <div className="card-heading">
                 <h2>{name}</h2>
                 <button onClick={() => setShowForm(true)} className="icon add-job-icon"></button>
@@ -55,14 +70,15 @@ const Card = ({ name, jobs }) => {
             </div>
             <div className="job-posts-container">
                 {jobPosts.map((job, index) => 
-                    <div className="job-post" key={index}>
-                        <h3>{job.title}</h3>
-                        <p>@{job.company}</p>
+                <div className="job-post" key={index}>
+                    <h3>{emoji.emojify(job.title, fixEmoji)}</h3>
+                    <p>@{job.company}</p>
 
-                        <button onClick={() => removeJobPost(job.id)} className="icon trash-icon"></button>
-                        <button onClick={() => editJobPost(job)} className="icon edit-icon"></button>
-                    </div>
+                    <button onClick={() => removeJobPost(job.id)} className="icon trash-icon"></button>
+                    <button onClick={() => editJobPost(job)} className="icon edit-icon"></button>
+                </div>
                 )}
+                
             </div>
         </div>
 

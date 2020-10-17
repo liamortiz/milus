@@ -16,7 +16,9 @@ const BoardContainer = () => {
     const boardContainer = useRef(null);
 
     const adjustContainerHeight = () => {
-        boardContainer.current.style.height = `${window.innerHeight}px`;
+        if (boardContainer.current) {
+            boardContainer.current.style.height = `${window.innerHeight}px`;
+        }
     }
     useEffect(() => {
         adjustContainerHeight();
