@@ -136,13 +136,14 @@
     }
 }
 
-#job-post-form {
+.job-post-form {
     background: rgba($color: #000000, $alpha: 0.5);
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 50rem;
+    z-index: 9;
     textarea {
         display: block;
         margin: 0 auto;

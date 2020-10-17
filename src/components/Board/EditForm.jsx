@@ -1,41 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
-const JobPostForm = (props) => {
+const EditForm = (props) => {
 
     const [company, setCompany] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
     useEffect(() => {
-        if (props.currentJob) {
-            setCompany(props.currentJob.company);
-            setTitle(props.currentJob.title);
-            setDescription(props.currentJob.description);
+        if (props.job) {
+            updateFormValues(props.job)
         }
-    }, [props.currentJob])
+    }, [props.job])
+
+
+    const updateFormValues = ({company, title, description}) => {
+        setCompany(company);
+        setTitle(title);
+        setDescription(description);
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (company && title && description) {
-            props.handleSubmit({company, title, id: uuidv4(), description});
+        if (company && title) {
+            props.handleEditSubmit({company, title, description});
         }
-        setCompany("");
-        setTitle("");
-        setDescription("");
+        updateFormValues({company: "", title: "", description: ""})
     }
 
     const discardForm = () => {
-        setCompany("");
-        setTitle("");
-        setDescription("");
-        
-        props.toggleForm();
+        updateFormValues({company: "", title: "", description: ""})
+        props.discardForm();
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Add Job</h2>
+            <h2>Edit Job</h2>
             <input required onChange={(e) => setCompany(e.target.value)} type="text" name="company" placeholder="Company" value={company}/>
             <input required onChange={(e) => setTitle(e.target.value)} type="text" name="title" placeholder="Job Title" value={title}/>
             
@@ -47,4 +46,4 @@ const JobPostForm = (props) => {
         </form> 
     )
 }
-export default JobPostForm;
+export default EditForm;

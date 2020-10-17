@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import produce from 'immer';
+import NewPostForm from './NewPostForm';
+import EditForm from './EditForm';
 
-const Card = (props) => {
+const Card = ({ name, jobs }) => {
 
-    const [jobPosts, setJobPosts] = useState([]);
+    const [jobPosts, setJobPosts] = useState(jobs);
+    const [showForm, setShowForm] = useState(false);
+    const [editting, setEditting] = useState(false);
 
-    const openJobForm = () => {
-        props.openJobForm(null, {addJobPost});
-    }
+    const [currentEditJob, setCurrentEditJob] = useState(null);
 
     const addJobPost = (job) => {
         setJobPosts(
             produce(jobPosts, nextState => {
                 nextState.push(job)
         }));
+
+        discardForm();
     }
 
     const removeJobPost = (id) => {
@@ -21,28 +25,58 @@ const Card = (props) => {
         const newState = jobPosts.slice(0, index).concat(jobPosts.slice(index+1));
         setJobPosts(newState);
     }
+
+    const discardForm = () => {
+        setShowForm(false);
+        setEditting(false);
+    }
+
+    const editJobPost = (job) => {
+        setCurrentEditJob(job);
+        setEditting(true);
+    }
+
+    const handleEditSubmit = (job) => {
+        setJobPosts(
+            produce(jobPosts, state => {
+                const index = jobPosts.findIndex(job => job.id === currentEditJob.id);
+                state[index] = job;
+        }))
+        discardForm();
+    }
+
     return (
+        <>
         <div className="card">
             <div className="card-heading">
-                <h2>{props.heading}</h2>
-                <button onClick={openJobForm} className="icon add-job-icon"></button>
+                <h2>{name}</h2>
+                <button onClick={() => setShowForm(true)} className="icon add-job-icon"></button>
                 <p>{jobPosts.length} Jobs</p>
             </div>
-
             <div className="job-posts-container">
-                {
-                jobPosts.map(job => 
-                    <div className="job-post">
+                {jobPosts.map((job, index) => 
+                    <div className="job-post" key={index}>
                         <h3>{job.title}</h3>
                         <p>@{job.company}</p>
 
                         <button onClick={() => removeJobPost(job.id)} className="icon trash-icon"></button>
-                        <button onClick={() => props.editJobPost(job)} className="icon edit-icon"></button>
+                        <button onClick={() => editJobPost(job)} className="icon edit-icon"></button>
                     </div>
-                    )
-                }
+                )}
             </div>
         </div>
+
+        {showForm && 
+        <div className="job-post-form">
+        <NewPostForm addJobPost={addJobPost} discardForm={discardForm} />
+        </div> 
+        }
+        {editting &&
+        <div className="job-post-form">
+        <EditForm handleEditSubmit={handleEditSubmit} discardForm={discardForm} job={currentEditJob}/>
+        </div> 
+        }
+        </>
     )
 }
 export default Card;

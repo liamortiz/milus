@@ -1,48 +1,35 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Card from './Card';
-import JobPostForm from './JobPostForm';
+import produce from 'immer';
+
+const defaultJobCards = [
+{name: "Applied", jobs: []}, 
+{name: "Phone Interview", jobs: []}, 
+{name: "On Site", jobs: []}, 
+{name: "Offer", jobs: []}, 
+{name: "Rejected", jobs: []}
+];
 
 const BoardContainer = () => {
 
-    const formRef = useRef(null);
-    const [currentCard, setCurrentCard] = useState(null);
-    const [currentJob, setCurrentJob] = useState(null);
+    const [jobCards, setJobCards] = useState(defaultJobCards);
 
-    const toggleForm = (e=null, card=null, job=null) => {
-        if (e) e.preventDefault();
-        if (card) setCurrentCard(card);
-        setCurrentJob(job);
+    const removeJobCard = () => {
 
-        formRef.current.classList.toggle('hidden');
-    } 
-
-    const submitJobPost = (job) => {
-        toggleForm()
-        setCurrentCard(null);
-        setCurrentJob(null);
-        currentCard.addJobPost(job);
     }
+    const addJobCard = () => {
 
-    const editJobPost = (job) => {
-        toggleForm(null, null, job);
     }
 
     return (
         <div id="board-container">
-            <Card openJobForm={toggleForm} editJobPost={editJobPost} heading="Applied"/>
-            <Card openJobForm={toggleForm} editJobPost={editJobPost} heading="Phone Interview"/>
-            <Card openJobForm={toggleForm} editJobPost={editJobPost} heading="On Site"/>
-            <Card openJobForm={toggleForm} editJobPost={editJobPost} heading="Offer"/>
+            {jobCards.map(({name, jobs}) => <Card key={name} name={name} jobs={jobs} removeJobCard={removeJobCard}/>)}
 
             <div className="create-card">
                 <button className="icon add-card-icon"></button>
             </div>
 
-            <div ref={formRef} id="job-post-form" className="hidden">
-                <JobPostForm handleSubmit={submitJobPost} toggleForm={toggleForm} currentJob={currentJob}/>
-            </div>
         </div>
-        
     )
 }
 export default BoardContainer;
