@@ -64,6 +64,7 @@ const Card = ({ name, jobs }) => {
         <>
         <div ref={cardContainer} className="card">
             <div className="card-heading">
+                <button className="icon delete-card-icon"></button>
                 <h2>{name}</h2>
                 <button onClick={() => setShowForm(true)} className="icon add-job-icon"></button>
                 <p>{jobPosts.length} Jobs</p>
