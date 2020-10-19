@@ -24,6 +24,7 @@
     width: 17rem;
     height: 100%;
     min-width: 17rem;
+    max-width: 17rem;
     margin: 0 .05em;
     border: 1px solid lighten($color: $nav-color, $amount: 10%);
     position: relative;
@@ -52,6 +53,34 @@
         font-weight: 400;
         color: rgb(36, 36, 36);
     }
+
+    .options {
+        position: absolute;
+        top: 4em;
+        left: 4em;
+        width: 10rem;
+        border: 1px solid $main-color;
+        border-radius: 5px;
+        z-index: 2;
+        button {
+            background: $main-color;
+            color: white;
+            display: block;
+            width: 100%;
+            padding: .5em 0;
+            border: none;
+            box-sizing: border-box;
+            text-align: left;
+            text-indent: 1em;
+            &:hover {
+                background: darken($color: $main-color, $amount: 10%);
+                cursor: pointer;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+    }
 }
 
 .card-heading {
@@ -69,20 +98,7 @@
     }
 }
 
-.add-job-icon {
-    border: none;
-    background: white;
-    position: absolute;
-    top: 20px;
-    left: 87%;
-    background-image: url('../assets/icons/add-file.png');
-    &:focus {
-        outline: none;
-    }
-    &:hover {
-        cursor: pointer;
-    }
-}
+
 .more-icon {
     border: none;
     background: white;
@@ -98,23 +114,25 @@
         cursor: pointer;
     }
 }
-.delete-card-icon {
-    border: none;
-    background: white;
-    position: absolute;
-    top: 1.5em;
-    left: 10px;
-    background-image: url('../assets/icons/delete.png');
-    &:focus {
-        outline: none;
-    }
-    &:hover {
-        cursor: pointer;
-    }
+
+.add-job-icon {
+    width: 16px;
+    height: 16px;
+    float: right;
+    background-image: url('../assets/icons/add-job.png');
+    margin-right: 1em;
+}
+.remove-card-icon {
+    width: 16px;
+    height: 16px;
+    float: right;
+    background-image: url('../assets/icons/trash-can.png');
+    margin-right: 1em;
 }
 
 .job-post {
     min-width: 200px;
+    width: 95%;
     height: 6rem;
     margin: .2em auto;
     background: #2ac4a2;
@@ -165,12 +183,13 @@
 .create-card {
     min-width: 8rem;
     margin-right: 0.5em;
+    background: white;
     border: 1px solid $nav-color;
     .add-card-icon {
         width: 64px;
         height: 64px;
         border: none;
-        background-color: white;
+        background-color:  white;
         background-image: url('../assets/icons/add-card.png');
         margin: 0 auto;
         margin-top: 17em;

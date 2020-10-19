@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Card from './Card';
+import { v4 as uuidv4, v4 } from 'uuid';
 import produce from 'immer';
 
 const defaultJobCards = [
-{name: "Applied", jobs: []}, 
-{name: "Phone Interview", jobs: []}, 
-{name: "On Site", jobs: []}, 
-{name: "Offer", jobs: []}, 
-{name: "Rejected", jobs: []}
+{name: "Applied", jobs: [], id: 0}, 
+{name: "Phone Interview", jobs: [], id: 1}, 
+{name: "On Site", jobs: [], id: 2}, 
+{name: "Offer", jobs: [], id: 3}, 
+{name: "Rejected", jobs: [], id: 4}
 ];
 
 const BoardContainer = () => {
@@ -25,8 +26,11 @@ const BoardContainer = () => {
     }, [])
     window.onresize = adjustContainerHeight;
 
-    const removeJobCard = () => {
-
+    const removeJobCard = (id) => {
+        // Create a div asking the user if they're sure about deleting the card
+        const index = jobCards.findIndex(card => card.id === id);
+        const newState = jobCards.slice(0, index).concat(jobCards.slice(index+1));
+        setJobCards(newState);
     }
     const addJobCard = () => {
 
@@ -37,7 +41,7 @@ const BoardContainer = () => {
             <div className="create-card">
                 <button className="icon add-card-icon"></button>
             </div>
-            {jobCards.map(({name, jobs}) => <Card key={name} name={name} jobs={jobs} removeJobCard={removeJobCard}/>)}
+            {jobCards.map(({name, jobs, id}) => <Card key={name} name={name} jobs={jobs} id={id} removeJobCard={removeJobCard}/>)}
         </div>
     )
 }

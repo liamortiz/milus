@@ -39,7 +39,7 @@ const EditForm = (props) => {
             <input required onChange={(e) => setCompany(e.target.value)} type="text" name="company" placeholder="Company" value={company}/>
             <input required onChange={(e) => setTitle(e.target.value)} type="text" name="title" placeholder="Job Title" value={title}/>
             
-            <textarea onChange={(e) => setDescription(e.target.value)} value={description}>
+            <textarea onChange={(e) => setDescription(e.target.value)} value={description} placeholder="Job Description">
             </textarea>
 
             <button type="submit">Submit</button>

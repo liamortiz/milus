@@ -5,12 +5,13 @@ import EditForm from './EditForm';
 import { Sortable } from '@shopify/draggable';
 import emoji from 'node-emoji';
 
-const Card = ({ name, jobs }) => {
+const Card = ({ name, jobs, removeJobCard, id }) => {
 
     const [jobPosts, setJobPosts] = useState(jobs);
     const [showForm, setShowForm] = useState(false);
     const [editting, setEditting] = useState(false);
     const [currentEditJob, setCurrentEditJob] = useState(null);
+    const [showingOptions, setShowingOptions] = useState(false);
 
     const cardContainer = useRef(null);
     
@@ -19,8 +20,6 @@ const Card = ({ name, jobs }) => {
             draggable: '.broken'
         })
     }, [])
-
-    
 
     const addJobPost = (job) => {
         setJobPosts(
@@ -40,6 +39,7 @@ const Card = ({ name, jobs }) => {
     const discardForm = () => {
         setShowForm(false);
         setEditting(false);
+        setShowingOptions(false);
     }
 
     const editJobPost = (job) => {
@@ -56,29 +56,30 @@ const Card = ({ name, jobs }) => {
         discardForm();
     }
 
-    const fixEmoji = () => {
-        return emoji.emojify(":coffee:");
-    }
-
     return (
         <>
         <div ref={cardContainer} className="card">
             <div className="card-heading">
                 <h2>{name}</h2>
-                <button onClick={() => setShowForm(true)} className="icon more-icon"></button>
+                <button onClick={() => setShowingOptions(!showingOptions)} className="icon more-icon"></button>
                 <p>{jobPosts.length} Jobs</p>
+                
+                <div className={`options ${showingOptions ? '' : 'hidden'}`}>
+                    <button onClick={() => setShowForm(true)} className="add-job-btn">New Job <i className="icon add-job-icon"></i></button>
+                    <button onClick={() => removeJobCard(id)} className="delete-card-btn">Delete Card <i className="icon remove-card-icon"></i></button>
+                </div>
+
             </div>
             <div className="job-posts-container">
                 {jobPosts.map((job, index) => 
                 <div className="job-post" key={index}>
-                    <h3>{emoji.emojify(job.title, fixEmoji)}</h3>
+                    <h3>{emoji.emojify(job.title, () => emoji.emojify(":coffee:"))}</h3>
                     <p>@{job.company}</p>
 
                     <button onClick={() => removeJobPost(job.id)} className="icon trash-icon"></button>
                     <button onClick={() => editJobPost(job)} className="icon edit-icon"></button>
                 </div>
                 )}
-                
             </div>
         </div>
 
