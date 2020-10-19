@@ -83,6 +83,21 @@
         cursor: pointer;
     }
 }
+.more-icon {
+    border: none;
+    background: white;
+    position: absolute;
+    top: 25px;
+    left: 85%;
+    background-image: url('../assets/icons/more.png');
+    background-repeat: no-repeat;
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+}
 .delete-card-icon {
     border: none;
     background: white;
