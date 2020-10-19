@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import produce from 'immer';
 import NewPostForm from './NewPostForm';
 import EditForm from './EditForm';
-import { Sortable } from '@shopify/draggable';
 import emoji from 'node-emoji';
 
 const Card = ({ name, jobs, removeJobCard, id }) => {
@@ -14,12 +13,6 @@ const Card = ({ name, jobs, removeJobCard, id }) => {
     const [showingOptions, setShowingOptions] = useState(false);
 
     const cardContainer = useRef(null);
-    
-    useEffect(() => {
-        const draggable = new Sortable(cardContainer.current, {
-            draggable: '.broken'
-        })
-    }, [])
 
     const addJobPost = (job) => {
         setJobPosts(
