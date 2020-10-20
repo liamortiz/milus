@@ -27,7 +27,6 @@ const BoardContainer = () => {
     window.onresize = adjustContainerHeight;
 
     const removeJobCard = (id) => {
-        // Create a div asking the user if they're sure about deleting the card
         const index = jobCards.findIndex(card => card.id === id);
         const newState = jobCards.slice(0, index).concat(jobCards.slice(index+1));
         setJobCards(newState);

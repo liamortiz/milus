@@ -92,8 +92,7 @@
         font-family: 'Rubik';
         text-align: center;
         font-size: 110%;
-        margin: 1em 0;
-        margin-bottom: 1.5em;
+        margin-top: 1em;
         max-width: 160px;
         border: 1px solid rgb(189, 189, 189);
         padding: .2em;
@@ -103,10 +102,33 @@
             outline: none;
         }
     }
-    p {
+    .jobs-counter {
         margin-top: -1em;
         color: rgb(75, 75, 75);
         font-weight: 500;
+    }
+    .sorting  {
+        border: 1px solid rgb(189, 189, 189);
+        width: 150px;
+        margin: .2em auto;
+        margin-bottom: 1.5em;
+        padding: .2em 0;
+        select {
+            margin-left: 1em;
+            border: none;
+            background: rgb(231, 231, 231);
+            padding: .2em;
+            &:focus {
+                outline: none;
+            }
+        }
+        p {
+            margin: 0;
+            text-indent: .2em;
+            display: inline-block;
+            font-family: 'Rubik';
+            font-size: 90%;
+        }
     }
 }
 
@@ -145,8 +167,10 @@
 .job-post {
     min-width: 200px;
     width: 95%;
-    height: 6rem;
+    box-sizing: border-box;
+    min-height: 6rem;
     margin: .2em auto;
+    padding: .7em;
     background: #2ac4a2;
     text-align: left;
     position: relative;
@@ -156,18 +180,17 @@
         cursor: grab;
     }
     h3 {
+        margin: 0;
         color:white;
-        padding: .1em 1em;
         font-size: 100%;
         font-family: 'Roboto';
     }
     p {
         color: white;
         font-weight: bold;
-        padding-left: 1em;
         font-family: 'Roboto';
         font-size: 90%;
-        margin-top: -1em;
+        margin-bottom: 0;
     }
     button {
         width: 1.2em;
@@ -189,6 +212,11 @@
         background-image: url('../assets/icons/edit.png');
         left: 82%;
         top: 72%;
+    }
+    small {
+        font-family: 'Roboto';
+        color: white;
+        font-weight: bold;
     }
 }
 

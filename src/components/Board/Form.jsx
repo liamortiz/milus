@@ -25,9 +25,9 @@ const Form = (props) => {
         e.preventDefault();
         if (company && title) {
             if (props.addJobPost) {
-                props.addJobPost({company, title: `${title} ${emoji.random().emoji}`, id: uuidv4(), description, salary});
+                props.addJobPost({company, title: `${title} ${emoji.random().emoji}`, id: uuidv4(), description, salary, date: new Date().toLocaleDateString()});
             } else {
-                props.handleEditSubmit({company, title: emoji.emojify(title), description, salary});
+                props.handleEditSubmit({company, title: emoji.emojify(title), description, salary, date: new Date().toLocaleDateString()});
             }
             
         }
