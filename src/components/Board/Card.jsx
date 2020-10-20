@@ -65,8 +65,10 @@ const Card = ({ name, jobs, removeJobCard, id }) => {
             case 'date':
                 break;
             case 'high-salary':
+                setJobPosts([...jobPosts].sort((a, b) => (a.salary < b.salary) ? 1 : -1));
                 break;
             case 'low-salary':
+                setJobPosts([...jobPosts].sort((a, b) => (a.salary > b.salary) ? 1 : -1));
                 break;
             case 'a-z':
                 setJobPosts([...jobPosts].sort((a, b) => (a.company > b.company) ? 1 : -1));

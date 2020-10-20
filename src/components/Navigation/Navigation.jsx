@@ -5,9 +5,9 @@ const Navigation = () => {
         <nav>
             <a href="/" className="logo"><h1>Milus</h1></a>
             <ul>
-                <li><a href="/">Board</a></li>
-                <li><a href="/">Metrics</a></li>
-                <li><a href="/">Profile</a></li>
+                <li><i className="icon board-icon"></i><a href="/">Board</a></li>
+                <li><i className="icon metrics-icon"></i><a href="/">Metrics</a></li>
+                <li><i className="icon profile-icon"></i><a href="/">Profile</a></li>
             </ul>
         </nav>
     )

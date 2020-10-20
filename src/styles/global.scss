@@ -17,3 +17,22 @@ $main-color: #BA3B46;
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+.board-icon {
+  position: absolute;
+  background-image: url('../assets/icons/board.png');
+  left: 0;
+  top: -.1em;
+}
+.metrics-icon {
+  position: absolute;
+  background-image: url('../assets/icons/digital.png');
+  left: 0;
+  top: -.2em;
+}
+.profile-icon {
+  position: absolute;
+  background-image: url('../assets/icons/old-man.png');
+  left: 0;
+  top: -.2em;
+}
