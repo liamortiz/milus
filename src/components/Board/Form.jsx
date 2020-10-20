@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import emoji from 'node-emoji';
 
-const EditForm = (props) => {
+const Form = (props) => {
 
     const [company, setCompany] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [salary, setSalary] = useState("");
 
     useEffect(() => {
         if (props.job) {
@@ -13,21 +15,24 @@ const EditForm = (props) => {
         }
     }, [props.job])
 
-
-    const updateFormValues = ({company, title, description}) => {
+    const updateFormValues = ({company, title, description, salary}) => {
         setCompany(company);
         setTitle(title);
         setDescription(description);
+        setSalary(salary);
     }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         if (company && title) {
-            props.handleEditSubmit({company, title: emoji.emojify(title), description});
+            if (props.addJobPost) {
+                props.addJobPost({company, title: `${title} ${emoji.random().emoji}`, id: uuidv4(), description, salary});
+            } else {
+                props.handleEditSubmit({company, title: emoji.emojify(title), description, salary});
+            }
+            
         }
         updateFormValues({company: "", title: "", description: ""})
     }
-
     const discardForm = () => {
         updateFormValues({company: "", title: "", description: ""})
         props.discardForm();
@@ -35,11 +40,13 @@ const EditForm = (props) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Edit Job</h2>
+            <h2>{props.formTitle}</h2>
             <input required onChange={(e) => setCompany(e.target.value)} type="text" name="company" placeholder="Company" value={company}/>
             <input required onChange={(e) => setTitle(e.target.value)} type="text" name="title" placeholder="Job Title" value={title}/>
             
-            <textarea onChange={(e) => setDescription(e.target.value)} value={description} placeholder="Job Description">
+            <input type="text" placeholder="Salary $60,000" value={salary} onChange={(e) => setSalary(e.target.value)}></input>
+            
+            <textarea onChange={(e) => setDescription(e.target.value)} placeholder="Job Description" value={description}>
             </textarea>
 
             <button type="submit">Submit</button>
@@ -47,4 +54,4 @@ const EditForm = (props) => {
         </form> 
     )
 }
-export default EditForm;
+export default Form;

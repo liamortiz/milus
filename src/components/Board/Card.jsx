@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import produce from 'immer';
-import NewPostForm from './NewPostForm';
-import EditForm from './EditForm';
 import emoji from 'node-emoji';
+import Form from './Form';
+import ConfirmationForm from './ComfirmationForm';
 
 const Card = ({ name, jobs, removeJobCard, id }) => {
 
@@ -11,6 +11,8 @@ const Card = ({ name, jobs, removeJobCard, id }) => {
     const [editting, setEditting] = useState(false);
     const [currentEditJob, setCurrentEditJob] = useState(null);
     const [showingOptions, setShowingOptions] = useState(false);
+    const [removingCard, setRemovingCard] = useState(false);
+    const [cardName, setCardName] = useState(name);
 
     const cardContainer = useRef(null);
 
@@ -49,18 +51,30 @@ const Card = ({ name, jobs, removeJobCard, id }) => {
         discardForm();
     }
 
+    const removeCard = (confirmation) => {
+        if (confirmation) {
+            removeJobCard(id);
+        } else {
+            setRemovingCard(false);
+            setShowingOptions(false);
+        }
+    }
+
     return (
         <>
-        <div ref={cardContainer} className="card">
+        <div ref={cardContainer} className="card" onMouseLeave={() => setShowingOptions(false)}>
             <div className="card-heading">
-                <h2>{name}</h2>
+                <input type="text" value={cardName} className="card-name" onChange={(e) => setCardName(e.target.value)}/>
+
                 <button onClick={() => setShowingOptions(!showingOptions)} className="icon more-icon"></button>
                 <p>{jobPosts.length} Jobs</p>
                 
                 <div className={`options ${showingOptions ? '' : 'hidden'}`}>
                     <button onClick={() => setShowForm(true)} className="add-job-btn">New Job <i className="icon add-job-icon"></i></button>
-                    <button onClick={() => removeJobCard(id)} className="delete-card-btn">Delete Card <i className="icon remove-card-icon"></i></button>
+                    <button onClick={() => setRemovingCard(true)} className="delete-card-btn">Delete Card <i className="icon remove-card-icon"></i></button>
                 </div>
+
+                {removingCard && <ConfirmationForm prompt="The card and all the jobs will be deleted." confirm={removeCard}/>}
 
             </div>
             <div className="job-posts-container">
@@ -78,12 +92,12 @@ const Card = ({ name, jobs, removeJobCard, id }) => {
 
         {showForm && 
         <div className="job-post-form">
-        <NewPostForm addJobPost={addJobPost} discardForm={discardForm} />
+        <Form formTitle="Job Application" addJobPost={addJobPost} discardForm={discardForm} />
         </div> 
         }
         {editting &&
         <div className="job-post-form">
-        <EditForm handleEditSubmit={handleEditSubmit} discardForm={discardForm} job={currentEditJob}/>
+        <Form formTitle="Edit Job" handleEditSubmit={handleEditSubmit} discardForm={discardForm} job={currentEditJob}/>
         </div> 
         }
         </>

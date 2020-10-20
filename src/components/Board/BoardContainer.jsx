@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Card from './Card';
-//import { v4 as uuidv4, v4 } from 'uuid';
-//import produce from 'immer';
+import produce from 'immer';
+import { v4 as uuidv4 } from 'uuid';
 
 const defaultJobCards = [
 {name: "Applied", jobs: [], id: 0}, 
@@ -33,17 +33,19 @@ const BoardContainer = () => {
         setJobCards(newState);
     }
     const addJobCard = () => {
-
+        setJobCards(produce(jobCards, state => {
+            state.unshift({name: "New Card", id: uuidv4(), jobs:[]})
+        }))
     }
 
     return (
         <div id="board-container" ref={boardContainer}>
             <div className="create-card">
-                <button className="icon add-card-icon"></button>
+                <button onClick={addJobCard} className="icon add-card-icon"></button>
             </div>
             {jobCards.map(({name, jobs, id}) => 
-                <Card key={name} name={name} jobs={jobs} id={id} removeJobCard={removeJobCard} addJobCard={addJobCard}/>
-                )}
+                <Card key={id} name={name} jobs={jobs} id={id} removeJobCard={removeJobCard} />
+            )}
         </div>
     )
 }
