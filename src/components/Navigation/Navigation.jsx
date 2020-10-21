@@ -1,13 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
     return(
         <nav>
-            <a href="/" className="logo"><h1>Milus</h1></a>
+            <NavLink to="/" className="logo"><h1>Milus</h1></NavLink>
             <ul>
-                <li><i className="icon board-icon"></i><a href="/">Board</a></li>
-                <li><i className="icon metrics-icon"></i><a href="/">Metrics</a></li>
-                <li><i className="icon profile-icon"></i><a href="/">Profile</a></li>
+                <li><i className="icon board-icon"></i><NavLink exact to="/" activeClassName='active-link'>Board</NavLink></li>
+                <li><i className="icon metrics-icon"></i><NavLink to="/metrics" activeClassName="active-link">Metrics</NavLink></li>
+                <li><i className="icon profile-icon"></i><NavLink to="/profile" activeClassName="active-link">Profile</NavLink></li>
             </ul>
         </nav>
     )
