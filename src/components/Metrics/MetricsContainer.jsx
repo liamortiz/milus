@@ -1,9 +1,10 @@
 import React from 'react';
+import DailyApplication from './DailyApplications';
 
 const MetricsContainer = () => {
     return (
         <div id="metrics-container">
-            <h1>Metrics</h1>
+            <DailyApplication />
         </div>
     )
 }

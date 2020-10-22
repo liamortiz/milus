@@ -1,0 +1,25 @@
+.daily-applications-container {
+    width: 40em;
+    margin: 2em auto;
+    .header {
+        padding: .8em;
+        border: 1px solid $nav-color;
+        h2 {
+            display: inline-block;
+            font-family: 'Roboto';
+            margin: 0;
+            font-weight: lighter;
+        }
+        p {
+            display: inline-block;
+            margin: 0;
+            margin-left: 15em;
+            font-weight: bold;
+        }
+    }
+    .grid {
+        border: 1px solid $nav-color;
+        height: 15rem;
+        margin-top: .5em;
+    }
+}
