@@ -5,6 +5,7 @@ import './App.scss';
 import MetricsContainer from './components/Metrics/MetricsContainer';
 import Navigation from './components/Navigation/Navigation';
 import BoardContainer from './components/Board/BoardContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Navigation/>
           <Route exact path = '/' component={BoardContainer}/>
           <Route path = '/metrics' component={MetricsContainer} />
+          <Route path = '/profile' component={ProfileContainer} />
         </div>
         </>
       </Switch>
