@@ -3,3 +3,20 @@
     max-width: 1000px;
     margin: 2em auto;
 }
+
+#main-chart {
+}
+
+.source-chart-container {
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.source-chart {
+    width: 20em;
+    display: inline-block;
+    margin: 0 .5em;
+}
