@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Bar } from 'react-chartjs-2';
+import { useRecoilValue } from 'recoil';
+import { defaultJobCards } from '../../atoms';
 
 const data = {
   labels: ['10/29', '10/30', '10/31', '11/1', '11/2', '11/3'],
@@ -26,10 +28,17 @@ const options = {
   },
 }
 
-const MetricsContainer = () => (
-  <div id="metrics-container">
-    <Bar data={data} options={options} />
-  </div>
-)
+const MetricsContainer = () => {
+  const jobCards = useRecoilValue(defaultJobCards);
+  useEffect(() => {
+    console.log(jobCards);
+  }, [jobCards])
+
+  return (
+    <div id="metrics-container">
+      <Bar data={data} options={options} />
+    </div>
+  )
+}
 
 export default MetricsContainer;

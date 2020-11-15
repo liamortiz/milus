@@ -1,19 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Card from './Card';
 import produce from 'immer';
 import { v4 as uuidv4 } from 'uuid';
-
-const defaultJobCards = [
-{name: "Applied", jobs: [], id: 0}, 
-{name: "Phone Interview", jobs: [], id: 1}, 
-{name: "On Site", jobs: [], id: 2}, 
-{name: "Offer", jobs: [], id: 3}, 
-{name: "Rejected", jobs: [], id: 4}
-];
+import { useRecoilState } from 'recoil';
+import { defaultJobCards } from '../../atoms';
 
 const BoardContainer = () => {
 
-    const [jobCards, setJobCards] = useState(defaultJobCards);
+    const [jobCards, setJobCards] = useRecoilState(defaultJobCards);
     const boardContainer = useRef(null);
 
     const adjustContainerHeight = () => {

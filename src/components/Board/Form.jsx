@@ -8,6 +8,7 @@ const Form = (props) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [salary, setSalary] = useState("");
+    const [source, setSource] = useState("");
 
     useEffect(() => {
         if (props.job) {
@@ -15,11 +16,12 @@ const Form = (props) => {
         }
     }, [props.job])
 
-    const updateFormValues = ({company, title, description, salary}) => {
+    const updateFormValues = ({company, title, description, salary, source}) => {
         setCompany(company);
         setTitle(title);
         setDescription(description);
         setSalary(salary);
+        setSource(source);
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -45,6 +47,7 @@ const Form = (props) => {
             <input required onChange={(e) => setTitle(e.target.value)} type="text" name="title" placeholder="Job Title" value={title}/>
             
             <input type="text" placeholder="Salary $60,000" value={salary} onChange={(e) => setSalary(e.target.value)}></input>
+            <input type="text" placeholder="Source (LinkedIn)" value={source} onChange={(e) => setSource(e.target.value)}></input>
             
             <textarea onChange={(e) => setDescription(e.target.value)} placeholder="Job Description" value={description}>
             </textarea>
