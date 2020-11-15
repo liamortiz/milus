@@ -17,3 +17,4 @@ Milus is meant to be a smart job application tracker. It will be able to keep tr
 ### Packages
 - Immer, handles data mutations
 - DraggableJs, handles dragging and dropping job cards
+- Recoil, state management
