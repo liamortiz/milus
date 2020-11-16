@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Bar } from 'react-chartjs-2';
 import SourceChart from './SourceChart';
 
 /* Using temporary data */
-
 const applications =  [
   {date: '10/29', source: 'LinkedIn', status: 'applied'},
   {date: '10/29', source: 'LinkedIn', status: 'applied'},
@@ -32,26 +31,19 @@ const applications =  [
 
 const parsedJobs = (() => {
   const hash = {};
-  applications.forEach(app => {
-    hash[app.date] = hash[app.date] ? hash[app.date] + 1 : 1;
-  })
+
+  for (const app of applications) {
+    if (!hash[app.date]) hash[app.date] = 0;
+    hash[app.date] += 1;
+  }
   return hash;
 })();
-
-
-function getUniqueJobSources() {
-  return new Set(applications.map(app => app.source));
-}
-
-function getTotalApplications() {
-  return Object.values(parsedJobs).reduce((a, b) => a + b);
-}
 
 const data = {
   labels: Object.keys(parsedJobs),
   datasets: [
     {
-      label: `Job Applications ${getTotalApplications()}`,
+      label: `Job Applications ${Object.values(parsedJobs).reduce((a, b) => a + b)}`,
       data: Object.values(parsedJobs),
       backgroundColor: 'rgba(255, 99, 132, 0.2)',
       borderColor: 'rgba(255, 99, 132, 1)',
@@ -59,7 +51,6 @@ const data = {
     },
   ],
 }
-
 const options = {
   scales: {
     yAxes: [
@@ -74,6 +65,18 @@ const options = {
 }
 
 const MetricsContainer = () => {
+
+  const [jobSources, setJobSources] = useState([]);
+
+  function getUniqueJobSources() {
+    const set = new Set(applications.map(app => app.source));
+    return [...set.values()]
+  }
+
+  useEffect(() => {
+    setJobSources(getUniqueJobSources());
+  }, []);
+
   return (
     <div id="metrics-container">
       <div id="main-chart">
@@ -81,7 +84,7 @@ const MetricsContainer = () => {
       </div>
       <div className="source-chart-container">
         {
-          [...getUniqueJobSources().values()].map(source => 
+          jobSources.map(source => 
             <SourceChart key={source} source={source} applications={applications}/>
             )
         }
