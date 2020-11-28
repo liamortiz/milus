@@ -7,6 +7,7 @@ const LoginContainer = () => {
 
     function handleSubmit(event) {
         event.preventDefault();
+        // Contact the API after front end validation
     }
 
     function handleEmailChange({ target }) {
@@ -23,9 +24,9 @@ const LoginContainer = () => {
             <p><span>Milus</span> the smart job application tracker.</p>
             <form onSubmit={handleSubmit}>
                 <span>Email</span>
-                <input type="email" onChange={handleEmailChange}/>
+                <input type="email" onChange={handleEmailChange} value={email}/>
                 <span>Password</span>
-                <input type="password" onChange={handlePasswordChange}/>
+                <input type="password" onChange={handlePasswordChange} value={password}/>
                 <button type="submit">Login</button>
                 <a href="">or register</a>
             </form>
